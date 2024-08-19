@@ -19,8 +19,6 @@ public class GameManager : MonoBehaviour
  public GameObject loadLevelPanel;
  public GameObject screamer;
  public GameObject endGame;
-
-
     
     void Start()
     {
