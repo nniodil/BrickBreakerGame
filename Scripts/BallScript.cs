@@ -13,17 +13,13 @@ public class BallScript : MonoBehaviour
     public Transform ExtraLife;
     AudioSource ballHit;
 
-
-    // Start is called before the first frame update
+   
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         ballHit = GetComponent<AudioSource>();
-
-
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         if (gm.gameOver)
@@ -53,9 +49,8 @@ public class BallScript : MonoBehaviour
             InPlay = false;
             gm.UpdateLives(-1);
         }
-
-
     }
+    
     void OnCollisionEnter2D(Collision2D other)
     {
         if (other.transform.CompareTag("brick"))
@@ -66,19 +61,16 @@ public class BallScript : MonoBehaviour
                 brickScript.BrickBreak();
             }
             else
-            {
-
+            {   
                 if (gm.lives < 3)
                 {
                     int randChance = Random.Range(0, 101);
+                    
                     if (randChance < 20)
-
                     {
                         Instantiate(ExtraLife, other.transform.position, other.transform.rotation);
                     }
-
                 }
-
                 Transform newParticleEffects = Instantiate(ParticleEffects, other.transform.position, other.transform.rotation);
                 Destroy(newParticleEffects.gameObject, 2.5f);
                 gm.UpdateScore(brickScript.points);
@@ -86,14 +78,7 @@ public class BallScript : MonoBehaviour
                 Destroy(other.gameObject);
             }
         }
-
+        
         GetComponent<AudioSource>().Play();
-
-        }
-
+        }      
 }
-
-
-
-
-
