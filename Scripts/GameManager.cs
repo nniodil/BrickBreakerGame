@@ -21,21 +21,14 @@ public class GameManager : MonoBehaviour
  public GameObject endGame;
 
 
-    // Start is called before the first frame update
+    
     void Start()
     {
         livesText.text = "Lives : " + lives;
         scoreText.text = "Score : " + score;
         numberOfBricks = GameObject.FindGameObjectsWithTag("brick").Length;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-
-    }
-
+    
     public void UpdateLives(int changeInLives)
     {
         lives += changeInLives;
@@ -48,14 +41,12 @@ public class GameManager : MonoBehaviour
             lives = -1;
             GameOver ();
         }
-      
     }
 
     public void UpdateScore(int points)
     {
         score += points;
         scoreText.text = "Score : " + score;
-        
     }
 
     public void UpdateNumberOfBricks()
@@ -68,24 +59,15 @@ public class GameManager : MonoBehaviour
                screamer.SetActive (true);
                Destroy(screamer, 3f);
                endGame.SetActive (true);
-
-
-
-
-
-
             }
-
-
             else
             {
                 loadLevelPanel.SetActive(true);
                 loadLevelPanel.GetComponentInChildren<Text>().text = "Level " + (currentLevelIndex + 2);
                 gameOver = true;
                 Invoke("LoadLevel",3f);
-
-
             }
+            
             if(currentLevelIndex == 3)
             {
                 loadLevelPanel.GetComponentInChildren<Text>().text = "Level Final";
@@ -99,18 +81,16 @@ public class GameManager : MonoBehaviour
         Instantiate (levels [currentLevelIndex],Vector2.zero,Quaternion.identity);
         numberOfBricks = GameObject.FindGameObjectsWithTag("brick").Length;
         gameOver = false;
-        loadLevelPanel.SetActive (false);
-        
-        
+        loadLevelPanel.SetActive (false);  
     }
+    
     void GameOver ()
     {
         gameOver = true;
         gameOverPanel.SetActive (true);
-
     }
 
-     public void PlayAgain()
+    public void PlayAgain()
     {
         SceneManager.LoadScene("SampleScene");
     }
@@ -119,11 +99,5 @@ public class GameManager : MonoBehaviour
     {
         Application.Quit ();
         Debug.Log("Game Quit");
-    }
-    
-
-        
+    }     
 }
-
-
-
